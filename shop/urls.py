@@ -18,15 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
     TokenRefreshView,
 )
+from user.views import CustomTokenObtainPairView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("cart/", include("cart.urls")),
     path("products/", include("product.urls")),
     path("user/", include("user.urls")),
-    path("login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("login/", CustomTokenObtainPairView.as_view(), name="login"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
